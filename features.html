@@ -1,342 +1,351 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Delivery Template — Full-Stack Food Delivery Marketplace</title>
-<meta name="description" content="A full-stack, multi-tenant food delivery marketplace: admin panel, seller panel, customer app, and FastAPI backend — configurable for marketplace or inventory business models." />
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          paper: '#EDEAE1',
-          panel: '#FFFFFF',
-          charcoal: '#16130F',
-          panelDark: '#201B15',
-          ink: '#211C16',
-          inkDark: '#F3EEE4',
-          muted: '#6E6659',
-          mutedDark: '#B8AD9C',
-          accent: '#D9701C',
-          accentDark: '#F2872F',
-          live: '#3E8E6C',
-          liveDark: '#55B98C',
-          pending: '#B98A2E',
-          pendingDark: '#D9A64B',
-          line: '#D9D2C2',
-          lineDark: '#3A3327',
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delivery Template — Full-Stack Food Delivery Marketplace</title>
+    <meta name="description" content="A full-stack, multi-tenant food delivery marketplace: admin panel, seller panel, customer app, and FastAPI backend — configurable for marketplace or inventory business models." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              paper: '#EDEAE1',
+              panel: '#FFFFFF',
+              charcoal: '#16130F',
+              panelDark: '#201B15',
+              ink: '#211C16',
+              inkDark: '#F3EEE4',
+              muted: '#6E6659',
+              mutedDark: '#B8AD9C',
+              accent: '#D9701C',
+              accentDark: '#F2872F',
+              live: '#3E8E6C',
+              liveDark: '#55B98C',
+              pending: '#B98A2E',
+              pendingDark: '#D9A64B',
+              line: '#D9D2C2',
+              lineDark: '#3A3327',
+            },
+            fontFamily: {
+              display: ['Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', 'P052', 'Georgia', 'serif'],
+              body: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', 'monospace'],
+            },
+          },
         },
-        fontFamily: {
-          display: ['Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', 'P052', 'Georgia', 'serif'],
-          body: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-          mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', 'monospace'],
-        },
-      },
-    },
-  };
-</script>
-<style>
-  html { text-size-adjust: 100%; }
-  body { font-feature-settings: "tnum" 1; }
-  h1, h2, h3 { text-wrap: balance; }
-  .tabular { font-variant-numeric: tabular-nums; }
-  .timeline-line {
-    background: repeating-linear-gradient(to bottom, currentColor 0, currentColor 4px, transparent 4px, transparent 10px);
-  }
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid #D9701C;
-    outline-offset: 3px;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .pulse-dot::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 9999px;
-      background: currentColor;
-      opacity: 0.35;
-      animation: pulse 2.2s ease-out infinite;
-    }
-  }
-  @keyframes pulse {
-    0% { transform: scale(0.6); opacity: 0.45; }
-    100% { transform: scale(2.2); opacity: 0; }
-  }
-  .ticket-edge {
-    -webkit-mask-image: radial-gradient(circle 6px at 0 50%, transparent 98%, black 100%), radial-gradient(circle 6px at 100% 50%, transparent 98%, black 100%);
-    mask-image: radial-gradient(circle 6px at 0 50%, transparent 98%, black 100%), radial-gradient(circle 6px at 100% 50%, transparent 98%, black 100%);
-    -webkit-mask-composite: source-in, source-in;
-    mask-composite: intersect;
-  }
-</style>
-</head>
-<body class="bg-paper text-ink dark:bg-charcoal dark:text-inkDark font-body antialiased">
+      };
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3D5PM9MQ79"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3D5PM9MQ79');
+    </script>
 
-  <!-- NAV -->
-  <header class="border-b border-line dark:border-lineDark">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-      <div class="flex items-center gap-2 font-mono text-sm tracking-wide">
-        <span class="inline-block w-2 h-2 rounded-full bg-accent dark:bg-accentDark"></span>
-        <span class="font-semibold">DELIVERY&nbsp;TEMPLATE</span>
-      </div>
-      <a href="#contact" class="text-sm font-mono px-4 py-2 rounded-full bg-ink text-paper dark:bg-inkDark dark:text-charcoal hover:opacity-90 transition-opacity">
-        Get in touch
-      </a>
-    </div>
-  </header>
+    <style>
+      html { text-size-adjust: 100%; }
+      body { font-feature-settings: "tnum" 1; }
+      h1, h2, h3 { text-wrap: balance; }
+      .tabular { font-variant-numeric: tabular-nums; }
+      .timeline-line {
+        background: repeating-linear-gradient(to bottom, currentColor 0, currentColor 4px, transparent 4px, transparent 10px);
+      }
+      a:focus-visible, button:focus-visible {
+        outline: 2px solid #D9701C;
+        outline-offset: 3px;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .pulse-dot::before {
+          content: '';
+          position: absolute;
+          inset: -4px;
+          border-radius: 9999px;
+          background: currentColor;
+          opacity: 0.35;
+          animation: pulse 2.2s ease-out infinite;
+        }
+      }
+      @keyframes pulse {
+        0% { transform: scale(0.6); opacity: 0.45; }
+        100% { transform: scale(2.2); opacity: 0; }
+      }
+      .ticket-edge {
+        -webkit-mask-image: radial-gradient(circle 6px at 0 50%, transparent 98%, black 100%), radial-gradient(circle 6px at 100% 50%, transparent 98%, black 100%);
+        mask-image: radial-gradient(circle 6px at 0 50%, transparent 98%, black 100%), radial-gradient(circle 6px at 100% 50%, transparent 98%, black 100%);
+        -webkit-mask-composite: source-in, source-in;
+        mask-composite: intersect;
+      }
+    </style>
+  </head>
+  
+  <body class="bg-paper text-ink dark:bg-charcoal dark:text-inkDark font-body antialiased">
 
-  <!-- HERO -->
-  <section class="max-w-6xl mx-auto px-6 pt-16 pb-20 grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
-    <div>
-      <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-5">
-        Food delivery · Multi-tenant · Open architecture
-      </p>
-      <h1 class="font-display text-4xl sm:text-5xl leading-[1.08] mb-6">
-        One codebase.<br />Every delivery business model.
-      </h1>
-      <p class="text-lg leading-relaxed text-muted dark:text-mutedDark max-w-lg mb-8">
-        Three applications and one backend, built to run a real delivery marketplace: a super-admin
-        console for onboarding restaurants and regions, a seller panel for running the kitchen,
-        and a customer app for ordering — switchable between marketplace and inventory ownership
-        models per restaurant.
-      </p>
-      <div class="flex flex-wrap gap-2 font-mono text-xs">
-        <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Next.js</span>
-        <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">FastAPI</span>
-        <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">MongoDB / Beanie</span>
-        <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Redis</span>
-        <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Celery</span>
-        <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Tailwind</span>
-      </div>
-    </div>
-
-    <!-- docket visual -->
-    <div class="relative">
-      <div class="ticket-edge bg-panel dark:bg-panelDark border border-line dark:border-lineDark rounded-sm p-6 shadow-[0_1px_0_rgba(0,0,0,0.03)] font-mono text-sm">
-        <div class="flex items-center justify-between pb-4 mb-4 border-b border-dashed border-line dark:border-lineDark">
-          <span class="text-muted dark:text-mutedDark tracking-wide">RESTAURANT ONBOARDING</span>
-          <span class="text-muted dark:text-mutedDark tabular">#0421</span>
+    <!-- NAV -->
+    <header class="border-b border-line dark:border-lineDark">
+      <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div class="flex items-center gap-2 font-mono text-sm tracking-wide">
+          <span class="inline-block w-2 h-2 rounded-full bg-accent dark:bg-accentDark"></span>
+          <span class="font-semibold">DELIVERY&nbsp;TEMPLATE</span>
         </div>
-        <dl class="space-y-3">
-          <div class="flex justify-between">
-            <dt class="text-muted dark:text-mutedDark">Name</dt>
-            <dd>Green Leaf Kitchen</dd>
-          </div>
-          <div class="flex justify-between">
-            <dt class="text-muted dark:text-mutedDark">Model</dt>
-            <dd>Marketplace · Owner-Seller</dd>
-          </div>
-          <div class="flex justify-between">
-            <dt class="text-muted dark:text-mutedDark">Commission</dt>
-            <dd class="tabular">12.5%</dd>
-          </div>
-          <div class="flex justify-between">
-            <dt class="text-muted dark:text-mutedDark">Region</dt>
-            <dd>H3 · Sector 8C29</dd>
-          </div>
-          <div class="flex justify-between items-center pt-3 border-t border-dashed border-line dark:border-lineDark">
-            <dt class="text-muted dark:text-mutedDark">Status</dt>
-            <dd class="flex items-center gap-2 text-live dark:text-liveDark font-semibold">
-              <span class="w-2 h-2 rounded-full bg-current"></span>
-              Approved
-            </dd>
-          </div>
-        </dl>
+        <a href="#contact" class="text-sm font-mono px-4 py-2 rounded-full bg-ink text-paper dark:bg-inkDark dark:text-charcoal hover:opacity-90 transition-opacity">
+          Get in touch
+        </a>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- HOW IT WORKS -->
-  <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
-    <div class="mb-12 max-w-xl">
-      <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">How it works</p>
-      <h2 class="font-display text-3xl">From first login to a placed order</h2>
-    </div>
-
-    <ol class="relative">
-      <!-- connector -->
-      <div class="timeline-line absolute left-[15px] top-2 bottom-2 w-px text-line dark:text-lineDark hidden sm:block"></div>
-
-      <li class="relative pl-12 pb-10 sm:pb-12">
-        <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">01</span>
-        <h3 class="font-display text-xl mb-1.5">Super admin, seeded on first boot</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">A seeder script creates the super-admin account the moment the backend starts — no manual database setup before the first login.</p>
-      </li>
-
-      <li class="relative pl-12 pb-10 sm:pb-12">
-        <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">02</span>
-        <h3 class="font-display text-xl mb-1.5">Regions and admins</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">From the admin website, the super admin defines regions and creates admin accounts, assigning each admin to the regions they cover.</p>
-      </li>
-
-      <li class="relative pl-12 pb-10 sm:pb-12">
-        <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">03</span>
-        <h3 class="font-display text-xl mb-1.5">Restaurants onboard, in person</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Admins visit restaurant owners directly, negotiate a commission percentage, and register them with phone verification via OTP.</p>
-      </li>
-
-      <li class="relative pl-12 pb-10 sm:pb-12">
-        <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">04</span>
-        <h3 class="font-display text-xl mb-1.5">Approve or reject</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Every registration is reviewed — a restaurant only goes live once its status is changed to approved.</p>
-      </li>
-
-      <li class="relative pl-12 pb-10 sm:pb-12">
-        <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">05</span>
-        <h3 class="font-display text-xl mb-1.5">Sellers build the menu</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Once approved, sellers manage restaurant details, staff, and full menu CRUD — searching the super admin's global catalog to fill in item details instantly instead of typing them from scratch.</p>
-      </li>
-
-      <li class="relative pl-12 pb-10 sm:pb-12">
-        <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">06</span>
-        <h3 class="font-display text-xl mb-1.5">Customers discover nearby</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">The customer app surfaces restaurants inside the user's delivery radius, filterable by veg-only, takeaway available, table booking, and open-now.</p>
-      </li>
-
-      <li class="relative pl-12">
-        <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">07</span>
-        <h3 class="font-display text-xl mb-1.5">Cart, table, or checkout</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Customers add menu items with variants, request table bookings, and check out with delivery or takeaway — takeaway orders are kept to a single restaurant — choosing a saved address and paying cash on delivery.</p>
-      </li>
-    </ol>
-  </section>
-
-  <!-- BUSINESS MODEL -->
-  <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
-    <div class="mb-10 max-w-xl">
-      <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">Per-restaurant configuration</p>
-      <h2 class="font-display text-3xl">Marketplace or inventory — your call, per restaurant</h2>
-    </div>
-    <div class="grid sm:grid-cols-2 gap-px bg-line dark:bg-lineDark border border-line dark:border-lineDark rounded-sm overflow-hidden">
-      <div class="bg-paper dark:bg-charcoal p-8">
-        <p class="font-mono text-xs text-live dark:text-liveDark uppercase tracking-wide mb-3">Marketplace</p>
-        <p class="text-muted dark:text-mutedDark leading-relaxed">The restaurant keeps an <span class="text-ink dark:text-inkDark">owner-seller</span> role — an independent business running its own menu and staff on your platform, paying the commission negotiated at onboarding.</p>
-      </div>
-      <div class="bg-paper dark:bg-charcoal p-8">
-        <p class="font-mono text-xs text-accent dark:text-accentDark uppercase tracking-wide mb-3">Inventory</p>
-        <p class="text-muted dark:text-mutedDark leading-relaxed">The restaurant is run by a <span class="text-ink dark:text-inkDark">store manager</span> instead — suited to a single operator managing several branded locations directly, like a company-owned chain.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURE GRID -->
-  <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
-    <div class="mb-12 max-w-xl">
-      <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">Everything else, included</p>
-      <h2 class="font-display text-3xl">Built for running the business, not just the orders</h2>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line dark:bg-lineDark border border-line dark:border-lineDark rounded-sm overflow-hidden">
-
-      <div class="bg-paper dark:bg-charcoal p-7">
-        <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Access &amp; Identity</p>
-        <ul class="space-y-2 text-sm leading-relaxed">
-          <li>JWT authentication with refresh tokens</li>
-          <li>Super-admin credentials seeded on startup</li>
-          <li>Last-active tracking updated on every token refresh</li>
-        </ul>
-      </div>
-
-      <div class="bg-paper dark:bg-charcoal p-7">
-        <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Configuration</p>
-        <ul class="space-y-2 text-sm leading-relaxed">
-          <li>Theme colour, takeaway, and table-booking toggles</li>
-          <li>Marketplace or inventory model, per restaurant</li>
-          <li>Franchise operators supported</li>
-        </ul>
-      </div>
-
-      <div class="bg-paper dark:bg-charcoal p-7">
-        <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Commerce &amp; Growth</p>
-        <ul class="space-y-2 text-sm leading-relaxed">
-          <li>Coupons — create, update, delete from the admin panel</li>
-          <li>Gift cards — created by one user, claimed by another</li>
-          <li>Coupon and gift-card discounts applied and claimed before checkout</li>
-          <li>User wallet with wallet-balance discounts at checkout</li>
-          <li>Order reviews from customers</li>
-        </ul>
-      </div>
-
-      <div class="bg-paper dark:bg-charcoal p-7">
-        <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Discovery</p>
-        <ul class="space-y-2 text-sm leading-relaxed">
-          <li>Global search across restaurants and menus</li>
-          <li>Delivery-radius matching by customer location</li>
-          <li>H3 hexagonal geo-indexing for region assignment</li>
-        </ul>
-      </div>
-
-      <div class="bg-paper dark:bg-charcoal p-7">
-        <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Infrastructure, your way</p>
-        <ul class="space-y-2 text-sm leading-relaxed">
-          <li>File storage: Docker, Cloudinary, AWS, Azure, or GCP</li>
-          <li>Redis &amp; Celery: local containers or dedicated external servers</li>
-          <li>Background email delivery via Celery</li>
-        </ul>
-      </div>
-
-      <div class="bg-paper dark:bg-charcoal p-7">
-        <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Marketplace-ready</p>
-        <ul class="space-y-2 text-sm leading-relaxed">
-          <li>i18n support, translated and documented for CodeCanyon</li>
-          <li>Admin-controlled feature visibility on admin &amp; user sites</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ROADMAP -->
-  <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
-    <div class="mb-10 max-w-xl">
-      <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">Right now</p>
-      <h2 class="font-display text-3xl">Actively maintained, worked on in the open</h2>
-    </div>
-
-    <div class="grid sm:grid-cols-2 gap-5">
-      <div class="border border-line dark:border-lineDark rounded-sm p-7">
-        <div class="flex items-center gap-2.5 mb-4">
-          <span class="relative inline-block w-2.5 h-2.5 rounded-full bg-pending dark:bg-pendingDark pulse-dot text-pending dark:text-pendingDark"></span>
-          <p class="font-mono text-xs text-pending dark:text-pendingDark uppercase tracking-wide">In progress</p>
-        </div>
-        <h3 class="font-display text-xl mb-2">Payment gateways</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed mb-4">Direct integrations for PayPal, Razorpay, and Stripe — a large piece of work, underway now.</p>
-        <div class="flex gap-2 font-mono text-xs">
-          <span class="px-2.5 py-1 rounded-full border border-line dark:border-lineDark">PayPal</span>
-          <span class="px-2.5 py-1 rounded-full border border-line dark:border-lineDark">Razorpay</span>
-          <span class="px-2.5 py-1 rounded-full border border-line dark:border-lineDark">Stripe</span>
+    <!-- HERO -->
+    <section class="max-w-6xl mx-auto px-6 pt-16 pb-20 grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+      <div>
+        <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-5">
+          Food delivery · Multi-tenant · Open architecture
+        </p>
+        <h1 class="font-display text-4xl sm:text-5xl leading-[1.08] mb-6">
+          One codebase.<br />Every delivery business model.
+        </h1>
+        <p class="text-lg leading-relaxed text-muted dark:text-mutedDark max-w-lg mb-8">
+          Three applications and one backend, built to run a real delivery marketplace: a super-admin
+          console for onboarding restaurants and regions, a seller panel for running the kitchen,
+          and a customer app for ordering — switchable between marketplace and inventory ownership
+          models per restaurant.
+        </p>
+        <div class="flex flex-wrap gap-2 font-mono text-xs">
+          <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Next.js</span>
+          <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">FastAPI</span>
+          <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">MongoDB / Beanie</span>
+          <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Redis</span>
+          <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Celery</span>
+          <span class="px-3 py-1.5 rounded-full border border-line dark:border-lineDark">Tailwind</span>
         </div>
       </div>
 
-      <div class="border border-line dark:border-lineDark rounded-sm p-7">
-        <p class="font-mono text-xs text-muted dark:text-mutedDark uppercase tracking-wide mb-4">Being verified</p>
-        <h3 class="font-display text-xl mb-2">Coupon eligibility cron job</h3>
-        <p class="text-muted dark:text-mutedDark leading-relaxed mb-4">A scheduled job that updates user tags used for coupon assignment — implemented, currently under test.</p>
-        <label class="flex items-center gap-2.5 text-sm">
-          <span class="w-4 h-4 rounded-sm border-2 border-line dark:border-lineDark shrink-0"></span>
-          Test coupon-assignment cron job
-        </label>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT / DEVELOPER -->
-  <footer id="contact" class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 border border-line dark:border-lineDark rounded-sm p-7">
-      <img src="profile-pic.jpeg" alt="Portrait of Sukesh Reddy" class="w-20 h-20 rounded-full object-cover border border-line dark:border-lineDark shrink-0" />
-      <div class="flex-1">
-        <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-1">Built &amp; supported by</p>
-        <h3 class="font-display text-2xl mb-3">Sukesh Reddy</h3>
-        <div class="flex flex-wrap gap-x-6 gap-y-1 font-mono text-sm text-muted dark:text-mutedDark">
-          <a href="tel:+918688246389" class="tabular hover:text-ink dark:hover:text-inkDark transition-colors">+91 86882 46389</a>
-          <a href="mailto:sukeshreddy319@gmail.com" class="hover:text-ink dark:hover:text-inkDark transition-colors">sukeshreddy319@gmail.com</a>
+      <!-- docket visual -->
+      <div class="relative">
+        <div class="ticket-edge bg-panel dark:bg-panelDark border border-line dark:border-lineDark rounded-sm p-6 shadow-[0_1px_0_rgba(0,0,0,0.03)] font-mono text-sm">
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-dashed border-line dark:border-lineDark">
+            <span class="text-muted dark:text-mutedDark tracking-wide">RESTAURANT ONBOARDING</span>
+            <span class="text-muted dark:text-mutedDark tabular">#0421</span>
+          </div>
+          <dl class="space-y-3">
+            <div class="flex justify-between">
+              <dt class="text-muted dark:text-mutedDark">Name</dt>
+              <dd>Green Leaf Kitchen</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-muted dark:text-mutedDark">Model</dt>
+              <dd>Marketplace · Owner-Seller</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-muted dark:text-mutedDark">Commission</dt>
+              <dd class="tabular">12.5%</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-muted dark:text-mutedDark">Region</dt>
+              <dd>H3 · Sector 8C29</dd>
+            </div>
+            <div class="flex justify-between items-center pt-3 border-t border-dashed border-line dark:border-lineDark">
+              <dt class="text-muted dark:text-mutedDark">Status</dt>
+              <dd class="flex items-center gap-2 text-live dark:text-liveDark font-semibold">
+                <span class="w-2 h-2 rounded-full bg-current"></span>
+                Approved
+              </dd>
+            </div>
+          </dl>
         </div>
       </div>
-    </div>
-    <p class="font-mono text-xs text-muted dark:text-mutedDark mt-8">© 2026 Delivery Template. All rights reserved.</p>
-  </footer>
+    </section>
 
-</body>
+    <!-- HOW IT WORKS -->
+    <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
+      <div class="mb-12 max-w-xl">
+        <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">How it works</p>
+        <h2 class="font-display text-3xl">From first login to a placed order</h2>
+      </div>
+
+      <ol class="relative">
+        <!-- connector -->
+        <div class="timeline-line absolute left-[15px] top-2 bottom-2 w-px text-line dark:text-lineDark hidden sm:block"></div>
+
+        <li class="relative pl-12 pb-10 sm:pb-12">
+          <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">01</span>
+          <h3 class="font-display text-xl mb-1.5">Super admin, seeded on first boot</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">A seeder script creates the super-admin account the moment the backend starts — no manual database setup before the first login.</p>
+        </li>
+
+        <li class="relative pl-12 pb-10 sm:pb-12">
+          <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">02</span>
+          <h3 class="font-display text-xl mb-1.5">Regions and admins</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">From the admin website, the super admin defines regions and creates admin accounts, assigning each admin to the regions they cover.</p>
+        </li>
+
+        <li class="relative pl-12 pb-10 sm:pb-12">
+          <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">03</span>
+          <h3 class="font-display text-xl mb-1.5">Restaurants onboard, in person</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Admins visit restaurant owners directly, negotiate a commission percentage, and register them with phone verification via OTP.</p>
+        </li>
+
+        <li class="relative pl-12 pb-10 sm:pb-12">
+          <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">04</span>
+          <h3 class="font-display text-xl mb-1.5">Approve or reject</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Every registration is reviewed — a restaurant only goes live once its status is changed to approved.</p>
+        </li>
+
+        <li class="relative pl-12 pb-10 sm:pb-12">
+          <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">05</span>
+          <h3 class="font-display text-xl mb-1.5">Sellers build the menu</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Once approved, sellers manage restaurant details, staff, and full menu CRUD — searching the super admin's global catalog to fill in item details instantly instead of typing them from scratch.</p>
+        </li>
+
+        <li class="relative pl-12 pb-10 sm:pb-12">
+          <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">06</span>
+          <h3 class="font-display text-xl mb-1.5">Customers discover nearby</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">The customer app surfaces restaurants inside the user's delivery radius, filterable by veg-only, takeaway available, table booking, and open-now.</p>
+        </li>
+
+        <li class="relative pl-12">
+          <span class="absolute left-0 top-0 w-8 h-8 rounded-full bg-panel dark:bg-panelDark border border-line dark:border-lineDark flex items-center justify-center font-mono text-xs">07</span>
+          <h3 class="font-display text-xl mb-1.5">Cart, table, or checkout</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed max-w-2xl">Customers add menu items with variants, request table bookings, and check out with delivery or takeaway — takeaway orders are kept to a single restaurant — choosing a saved address and paying cash on delivery.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- BUSINESS MODEL -->
+    <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
+      <div class="mb-10 max-w-xl">
+        <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">Per-restaurant configuration</p>
+        <h2 class="font-display text-3xl">Marketplace or inventory — your call, per restaurant</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-px bg-line dark:bg-lineDark border border-line dark:border-lineDark rounded-sm overflow-hidden">
+        <div class="bg-paper dark:bg-charcoal p-8">
+          <p class="font-mono text-xs text-live dark:text-liveDark uppercase tracking-wide mb-3">Marketplace</p>
+          <p class="text-muted dark:text-mutedDark leading-relaxed">The restaurant keeps an <span class="text-ink dark:text-inkDark">owner-seller</span> role — an independent business running its own menu and staff on your platform, paying the commission negotiated at onboarding.</p>
+        </div>
+        <div class="bg-paper dark:bg-charcoal p-8">
+          <p class="font-mono text-xs text-accent dark:text-accentDark uppercase tracking-wide mb-3">Inventory</p>
+          <p class="text-muted dark:text-mutedDark leading-relaxed">The restaurant is run by a <span class="text-ink dark:text-inkDark">store manager</span> instead — suited to a single operator managing several branded locations directly, like a company-owned chain.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE GRID -->
+    <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
+      <div class="mb-12 max-w-xl">
+        <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">Everything else, included</p>
+        <h2 class="font-display text-3xl">Built for running the business, not just the orders</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line dark:bg-lineDark border border-line dark:border-lineDark rounded-sm overflow-hidden">
+
+        <div class="bg-paper dark:bg-charcoal p-7">
+          <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Access &amp; Identity</p>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>JWT authentication with refresh tokens</li>
+            <li>Super-admin credentials seeded on startup</li>
+            <li>Last-active tracking updated on every token refresh</li>
+          </ul>
+        </div>
+
+        <div class="bg-paper dark:bg-charcoal p-7">
+          <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Configuration</p>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>Theme colour, takeaway, and table-booking toggles</li>
+            <li>Marketplace or inventory model, per restaurant</li>
+            <li>Franchise operators supported</li>
+          </ul>
+        </div>
+
+        <div class="bg-paper dark:bg-charcoal p-7">
+          <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Commerce &amp; Growth</p>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>Coupons — create, update, delete from the admin panel</li>
+            <li>Gift cards — created by one user, claimed by another</li>
+            <li>Coupon and gift-card discounts applied and claimed before checkout</li>
+            <li>User wallet with wallet-balance discounts at checkout</li>
+            <li>Order reviews from customers</li>
+          </ul>
+        </div>
+
+        <div class="bg-paper dark:bg-charcoal p-7">
+          <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Discovery</p>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>Global search across restaurants and menus</li>
+            <li>Delivery-radius matching by customer location</li>
+            <li>H3 hexagonal geo-indexing for region assignment</li>
+          </ul>
+        </div>
+
+        <div class="bg-paper dark:bg-charcoal p-7">
+          <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Infrastructure, your way</p>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>File storage: Docker, Cloudinary, AWS, Azure, or GCP</li>
+            <li>Redis &amp; Celery: local containers or dedicated external servers</li>
+            <li>Background email delivery via Celery</li>
+          </ul>
+        </div>
+
+        <div class="bg-paper dark:bg-charcoal p-7">
+          <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-3">Marketplace-ready</p>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>i18n support, translated and documented for CodeCanyon</li>
+            <li>Admin-controlled feature visibility on admin &amp; user sites</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
+      <div class="mb-10 max-w-xl">
+        <p class="font-mono text-xs tracking-[0.18em] text-muted dark:text-mutedDark uppercase mb-3">Right now</p>
+        <h2 class="font-display text-3xl">Actively maintained, worked on in the open</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="border border-line dark:border-lineDark rounded-sm p-7">
+          <div class="flex items-center gap-2.5 mb-4">
+            <span class="relative inline-block w-2.5 h-2.5 rounded-full bg-pending dark:bg-pendingDark pulse-dot text-pending dark:text-pendingDark"></span>
+            <p class="font-mono text-xs text-pending dark:text-pendingDark uppercase tracking-wide">In progress</p>
+          </div>
+          <h3 class="font-display text-xl mb-2">Payment gateways</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed mb-4">Direct integrations for PayPal, Razorpay, and Stripe — a large piece of work, underway now.</p>
+          <div class="flex gap-2 font-mono text-xs">
+            <span class="px-2.5 py-1 rounded-full border border-line dark:border-lineDark">PayPal</span>
+            <span class="px-2.5 py-1 rounded-full border border-line dark:border-lineDark">Razorpay</span>
+            <span class="px-2.5 py-1 rounded-full border border-line dark:border-lineDark">Stripe</span>
+          </div>
+        </div>
+
+        <div class="border border-line dark:border-lineDark rounded-sm p-7">
+          <p class="font-mono text-xs text-muted dark:text-mutedDark uppercase tracking-wide mb-4">Being verified</p>
+          <h3 class="font-display text-xl mb-2">Coupon eligibility cron job</h3>
+          <p class="text-muted dark:text-mutedDark leading-relaxed mb-4">A scheduled job that updates user tags used for coupon assignment — implemented, currently under test.</p>
+          <label class="flex items-center gap-2.5 text-sm">
+            <span class="w-4 h-4 rounded-sm border-2 border-line dark:border-lineDark shrink-0"></span>
+            Test coupon-assignment cron job
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / DEVELOPER -->
+    <footer id="contact" class="max-w-6xl mx-auto px-6 py-16 border-t border-line dark:border-lineDark">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 border border-line dark:border-lineDark rounded-sm p-7">
+        <img src="profile-pic.jpeg" alt="Portrait of Sukesh Reddy" class="w-20 h-20 rounded-full object-cover border border-line dark:border-lineDark shrink-0" />
+        <div class="flex-1">
+          <p class="font-mono text-[11px] text-muted dark:text-mutedDark uppercase tracking-wide mb-1">Built &amp; supported by</p>
+          <h3 class="font-display text-2xl mb-3">Sukesh Reddy</h3>
+          <div class="flex flex-wrap gap-x-6 gap-y-1 font-mono text-sm text-muted dark:text-mutedDark">
+            <a href="tel:+918688246389" class="tabular hover:text-ink dark:hover:text-inkDark transition-colors">+91 86882 46389</a>
+            <a href="mailto:sukeshreddy319@gmail.com" class="hover:text-ink dark:hover:text-inkDark transition-colors">sukeshreddy319@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <p class="font-mono text-xs text-muted dark:text-mutedDark mt-8">© 2026 Delivery Template. All rights reserved.</p>
+    </footer>
+
+  </body>
 </html>
