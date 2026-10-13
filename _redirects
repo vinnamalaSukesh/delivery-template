@@ -1,0 +1,4 @@
+/user         https://deliveryuserwebsite.netlify.app/user/         200
+/user/*       https://deliveryuserwebsite.netlify.app/user/:splat   200
+/admin        https://deliveryadminwebsite.netlify.app/admin/       200
+/admin/*      https://deliveryadminwebsite.netlify.app/admin/:splat 200
